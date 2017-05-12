@@ -1,0 +1,27 @@
+
+machine:
+    timezone:
+        Asia/Tokyo
+    pre:
+      - sudo curl -L -o /usr/bin/docker 'https://s3-external-1.amazonaws.com/circle-downloads/docker-1.9.0-circleci'
+      - sudo chmod 0755 /usr/bin/docker
+
+    php:
+        version: 7.1.0
+
+    services:
+        - docker
+
+dependencies:
+    post:
+        - echo "dipendencies_post" > ci.log
+
+test:
+    override:
+      - echo "test"
+
+deployment:
+    prod:
+        branch: master
+        commands:
+          - echo "deploytest"
